@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sterling Calls — We Make Your Phone Ring With the Right People</title>
+<meta name="description" content="Sterling Calls drives qualified calls and booked appointments to local service businesses. Pay per lead, not a monthly retainer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1D33;
+    --navy-mid: #122843;
+    --navy-light: #1A3A5C;
+    --silver: #C5CED6;
+    --silver-light: #E2E7EC;
+    --platinum: #A8B4BF;
+    --accent: #D0D8E0;
+    --white: #F4F6F8;
+    --text-body: #8A96A3;
+    --text-muted: #6B7A88;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--silver-light);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 29, 51, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(197, 206, 214, 0.06);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .logo span { color: var(--platinum); }
+
+  .nav-cta {
+    padding: 0.6rem 1.5rem;
+    background: var(--silver-light);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.82rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .nav-cta:hover { background: var(--white); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(168, 180, 191, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(26, 58, 92, 0.35) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(197, 206, 214, 0.2);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--platinum);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    color: var(--white);
+    line-height: 1.12;
+    max-width: 780px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--silver);
+  }
+
+  .hero p {
+    font-size: 1.12rem;
+    color: var(--text-body);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--silver-light);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 0.92rem;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .cta-btn:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(168, 180, 191, 0.15);
+  }
+
+  section { padding: 6rem 2rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--platinum);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.02rem;
+    color: var(--text-body);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  .services {
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(197, 206, 214, 0.06);
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .services-header .section-subtitle { margin: 0 auto; }
+
+  .channel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .channel-tag {
+    padding: 0.7rem 1.4rem;
+    background: var(--navy-mid);
+    border: 1px solid rgba(197, 206, 214, 0.08);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--silver-light);
+    transition: border-color 0.3s;
+  }
+
+  .channel-tag:hover { border-color: rgba(197, 206, 214, 0.2); }
+
+  .how-it-works {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(197, 206, 214, 0.06);
+  }
+
+  .how-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .step {
+    padding: 2.25rem 1.75rem;
+    background: var(--navy-mid);
+    border: 1px solid rgba(197, 206, 214, 0.06);
+    border-radius: 8px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .step:hover { border-color: rgba(197, 206, 214, 0.15); }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: rgba(197, 206, 214, 0.08);
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+  }
+
+  .step h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 0.65rem;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.65;
+  }
+
+  .verticals {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .verticals-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .vertical-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .vertical-card {
+    padding: 1.75rem;
+    background: var(--navy-mid);
+    border: 1px solid rgba(197, 206, 214, 0.06);
+    border-radius: 8px;
+    transition: border-color 0.3s;
+  }
+
+  .vertical-card:hover { border-color: rgba(197, 206, 214, 0.15); }
+
+  .vertical-icon { font-size: 1.3rem; margin-bottom: 0.75rem; }
+
+  .vertical-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .vertical-card p {
+    font-size: 0.85rem;
+    color: var(--text-body);
+    line-height: 1.55;
+  }
+
+  .trust-line {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .about {
+    max-width: 800px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(197, 206, 214, 0.06);
+  }
+
+  .about-inner {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+
+  .about-photo {
+    width: 140px;
+    min-width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid rgba(197, 206, 214, 0.1);
+  }
+
+  .about-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text p {
+    font-size: 0.92rem;
+    color: var(--text-body);
+    line-height: 1.75;
+    margin-bottom: 0.85rem;
+  }
+
+  .about-text p:last-of-type { margin-bottom: 0; }
+
+  .about-creds {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2.25rem;
+    flex-wrap: wrap;
+  }
+
+  .cred-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--white);
+  }
+
+  .cred-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+
+  .final-cta {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .final-cta p {
+    color: var(--text-body);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(197, 206, 214, 0.06);
+    font-size: 0.78rem;
+    color: rgba(138, 150, 163, 0.4);
+  }
+
+  footer a {
+    color: rgba(138, 150, 163, 0.6);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--silver); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .steps { grid-template-columns: 1fr; }
+    .vertical-grid { grid-template-columns: 1fr; }
+    .about-inner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .about-creds { justify-content: center; }
+    nav { padding: 1rem 1.25rem; }
+    .logo { font-size: 1.2rem; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Sterling<span>Calls</span></div>
+  <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="nav-cta" target="_blank">Book a Call</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Local Lead Generation for Service Businesses</div>
+  <h1>We make your phone ring with <em>the right people.</em></h1>
+  <p>Sterling Calls drives qualified calls and booked appointments to local service businesses. You focus on the work. We fill the pipeline.</p>
+  <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="cta-btn" target="_blank">Book a Free Strategy Call</a>
+</section>
+
+<section class="services">
+  <div class="services-header">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">A full lead engine — not just one channel</h2>
+    <p class="section-subtitle">Every market is different. We build a custom mix of channels to drive qualified inquiries to your business.</p>
+  </div>
+  <div class="channel-tags">
+    <div class="channel-tag">Google Local Ads</div>
+    <div class="channel-tag">Community Presence</div>
+    <div class="channel-tag">24/7 Call Coverage</div>
+    <div class="channel-tag">Monthly Reporting</div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="how-header">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">You pay for qualified leads. Not a monthly retainer.</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Strategy call</h3>
+      <p>15 minutes. We learn your market and tell you exactly what we'd do and what it costs. Free.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>We build your engine</h3>
+      <p>Custom ad campaigns, landing pages, and call coverage — tuned to your geography and vertical.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Leads start flowing</h3>
+      <p>Qualified calls, form fills, and booked appointments land on your phone and calendar. No retainer. You close.</p>
+    </div>
+  </div>
+</section>
+
+<section class="verticals">
+  <div class="verticals-header">
+    <div class="section-label">Industries</div>
+    <h2 class="section-title">Built for businesses where the phone matters most</h2>
+  </div>
+  <div class="vertical-grid">
+    <div class="vertical-card">
+      <div class="vertical-icon">&#9878;&#65039;</div>
+      <h3>Legal Practices</h3>
+      <p>Intake calls that become signed cases.</p>
+    </div>
+    <div class="vertical-card">
+      <div class="vertical-icon">&#127973;</div>
+      <h3>Healthcare</h3>
+      <p>Patients searching for the right provider.</p>
+    </div>
+    <div class="vertical-card">
+      <div class="vertical-icon">&#127969;</div>
+      <h3>Senior Care</h3>
+      <p>Families making urgent, emotional decisions.</p>
+    </div>
+    <div class="vertical-card">
+      <div class="vertical-icon">&#127968;</div>
+      <h3>Home Services</h3>
+      <p>Homeowners with a to-do list and no time.</p>
+    </div>
+    <div class="vertical-card">
+      <div class="vertical-icon">&#129658;</div>
+      <h3>Medical Practices</h3>
+      <p>New patients looking for availability.</p>
+    </div>
+    <div class="vertical-card">
+      <div class="vertical-icon">&#127978;</div>
+      <h3>Treatment Centers</h3>
+      <p>People reaching out at critical moments.</p>
+    </div>
+  </div>
+  <p class="trust-line">We work with regulated industries. Privacy and compliance are built into everything we do.</p>
+</section>
+
+<section class="about">
+  <div class="section-label">Who's Behind This</div>
+  <div class="about-inner">
+    <img src="russell-profile.jpg" alt="Russell Miller" class="about-photo"/>
+    <div class="about-text">
+      <h2>This isn't my first time driving calls to local businesses.</h2>
+      <p>I'm Russell Miller. I spent four years at RepairPal — the country's largest auto repair marketplace — leading product and marketing. During my time there, the company doubled in traffic, doubled in revenue, and was ultimately acquired by Yelp for $80 million.</p>
+      <p>Before that, I ran growth at YourMechanic, driving hundreds of qualified calls per month to local mechanics before the company was acquired by Wrench.</p>
+      <p>Now I apply that same playbook to individual local businesses. Same strategies that worked at scale — pointed at your phone, your calendar, your bottom line.</p>
+    </div>
+  </div>
+  <div class="about-creds">
+    <div class="cred">
+      <div class="cred-value">15+ Years</div>
+      <div class="cred-label">Local Services</div>
+    </div>
+    <div class="cred">
+      <div class="cred-value">Operator-Led</div>
+      <div class="cred-label">Not Outsourced</div>
+    </div>
+    <div class="cred">
+      <div class="cred-value">San Francisco</div>
+      <div class="cred-label">Based In</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Let's see if Sterling Calls is right for your business.</h2>
+  <p>15 minutes. We'll tell you exactly how we'd drive qualified leads to your business — and what it costs.</p>
+  <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="cta-btn" target="_blank">Book a Free Strategy Call</a>
+</section>
+
+<footer>
+  &copy; 2026 Sterling Calls &middot; <a href="mailto:russell@sterlingcalls.com">russell@sterlingcalls.com</a>
+</footer>
+
+</body>
+</html>
