@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sterling Calls — AI Receptionist for Senior Living Communities</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+<style>
+:root {
+  --ink: #0a0a0a;
+  --paper: #FAF9F6;
+  --warm: #F5F0EB;
+  --accent: #1A3A5C;
+  --accent-light: #5B9BD5;
+  --accent-hover: #234D75;
+  --muted: #6B6560;
+  --border: #E0DBD5;
+  --green: #1A7A4C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+nav { padding: 24px 0; border-bottom: 1px solid var(--border); }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px; letter-spacing: -0.5px;
+  color: var(--ink); text-decoration: none;
+}
+.logo span { color: var(--accent); font-weight: 400; }
+.nav-cta {
+  font-size: 14px; font-weight: 600; padding: 10px 24px;
+  background: var(--accent); color: var(--paper);
+  text-decoration: none; border-radius: 6px;
+  transition: all 0.2s; letter-spacing: 0.3px;
+}
+.nav-cta:hover { background: var(--accent-hover); }
+
+.hero { padding: 100px 0 80px; }
+.hero-eyebrow {
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05; letter-spacing: -2px;
+  max-width: 850px; margin-bottom: 28px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 19px; color: var(--muted);
+  max-width: 580px; line-height: 1.6; margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: 16px 36px;
+  background: var(--accent); color: white;
+  font-size: 16px; font-weight: 600;
+  text-decoration: none; border-radius: 8px;
+  transition: all 0.25s; letter-spacing: 0.3px;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 24px; color: var(--ink);
+  font-size: 15px; font-weight: 500;
+  text-decoration: none; border: 1px solid var(--border);
+  border-radius: 8px; transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--ink); }
+
+.proof-bar { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+.proof-stat {
+  font-family: 'Instrument Serif', serif;
+  font-size: 48px; letter-spacing: -2px; color: var(--ink);
+}
+.proof-stat span { color: var(--accent); }
+.proof-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+section { padding: 80px 0; }
+.section-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -1.5px; line-height: 1.1;
+  margin-bottom: 20px; max-width: 650px;
+}
+.section-sub {
+  font-size: 17px; color: var(--muted);
+  max-width: 540px; line-height: 1.6; margin-bottom: 48px;
+}
+
+.problem {
+  background: var(--ink); color: var(--paper);
+  border-radius: 16px; padding: 64px; margin: 0 32px;
+}
+.problem .section-eyebrow { color: var(--accent-light); }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 48px; }
+.problem-card {
+  padding: 32px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; background: rgba(255,255,255,0.03);
+}
+.problem-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  background: rgba(91,155,213,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.problem-icon i { color: var(--accent-light); }
+.problem-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #fff; }
+.problem-card p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.problem-card .cost {
+  margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px; color: var(--accent-light);
+}
+
+.steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.step-card {
+  padding: 40px; background: var(--warm);
+  border-radius: 12px; border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+.step-card:hover { transform: translateY(-2px); }
+.step-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.step-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 48px; color: var(--border); line-height: 1;
+}
+.step-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: white; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.step-icon i { color: var(--accent); }
+.step-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.step-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+.step-tag {
+  display: inline-block; margin-top: 16px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  padding: 4px 12px; border-radius: 100px;
+  background: rgba(26,58,92,0.08); color: var(--accent);
+}
+
+.platform-section { border-top: 1px solid var(--border); }
+.platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.platform-card {
+  padding: 36px; border: 1px solid var(--border);
+  border-radius: 12px; background: white; transition: all 0.2s;
+}
+.platform-card:hover { border-color: var(--accent); }
+.platform-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.platform-card-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--warm); display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.platform-card-icon i { color: var(--accent); }
+.platform-card h3 { font-size: 17px; font-weight: 600; }
+.platform-card p { font-size: 14px; color: var(--muted); line-height: 1.6; padding-left: 52px; }
+
+.value-timeline {
+  position: relative; padding-left: 40px;
+  border-left: 2px solid var(--border); max-width: 700px;
+}
+.value-node { position: relative; padding: 0 0 48px 32px; }
+.value-node:last-child { padding-bottom: 0; }
+.value-node::before {
+  content: ''; position: absolute;
+  left: -9px; top: 6px; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--accent); border: 3px solid var(--paper);
+}
+.value-month {
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+}
+.value-node h3 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.value-node p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+.value-revenue {
+  display: inline-block; margin-top: 10px;
+  font-family: 'Instrument Serif', serif; font-size: 22px; color: var(--green);
+}
+
+.integrations-section { background: var(--warm); border-radius: 16px; margin: 0 32px; padding: 64px; }
+.integrations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.integration-pill {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 20px; background: white;
+  border-radius: 10px; border: 1px solid var(--border);
+  font-size: 14px; font-weight: 500;
+}
+.integration-pill i { color: var(--green); flex-shrink: 0; }
+
+.credibility-section { border-top: 1px solid var(--border); }
+.cred-layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+.cred-photo {
+  width: 200px; height: 200px; border-radius: 12px;
+  object-fit: cover; border: 1px solid var(--border);
+}
+.cred-bio p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+.cred-bio p strong { color: var(--ink); }
+.cred-badges { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+.cred-badge {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  padding: 6px 14px; border-radius: 100px;
+  background: var(--warm); color: var(--accent); border: 1px solid var(--border);
+}
+
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; }
+.price-card {
+  padding: 48px 40px; border: 1px solid var(--border);
+  border-radius: 16px; background: white; position: relative;
+}
+.price-card.featured { border: 2px solid var(--accent); }
+.price-card.featured::after {
+  content: 'MOST POPULAR'; position: absolute;
+  top: -13px; left: 32px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  background: var(--accent); color: white;
+  padding: 4px 14px; border-radius: 100px;
+}
+.price-name {
+  font-size: 14px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+}
+.price-amount {
+  font-family: 'Instrument Serif', serif;
+  font-size: 56px; letter-spacing: -2px; line-height: 1;
+}
+.price-amount span { font-size: 20px; color: var(--muted); letter-spacing: 0; }
+.price-desc { font-size: 15px; color: var(--muted); margin: 16px 0 28px; line-height: 1.5; }
+.price-features { list-style: none; margin-bottom: 32px; }
+.price-features li {
+  font-size: 15px; padding: 10px 0;
+  border-bottom: 1px solid #f0ede8;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.price-features li i { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+.price-cta {
+  display: block; text-align: center; padding: 16px;
+  border-radius: 8px; font-size: 15px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+}
+.price-cta.primary { background: var(--accent); color: white; }
+.price-cta.primary:hover { background: var(--accent-hover); }
+.price-cta.secondary { background: var(--warm); color: var(--ink); }
+.price-cta.secondary:hover { background: #ebe5dd; }
+
+.comparison { margin-top: 64px; overflow-x: auto; }
+.comparison table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.comparison th {
+  text-align: left; padding: 14px 20px;
+  font-weight: 600; font-size: 13px;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); border-bottom: 2px solid var(--ink);
+}
+.comparison td { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.comparison tr td:first-child { font-weight: 500; }
+.comparison .check { color: var(--green); font-weight: 700; }
+.comparison .x { color: #ccc; }
+.comparison .highlight { background: rgba(26,58,92,0.04); }
+
+.faq-section { border-top: 1px solid var(--border); }
+.faq-item { max-width: 700px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.faq-q { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.faq-a { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+.final-cta {
+  text-align: center; padding: 100px 32px;
+  background: var(--ink); color: var(--paper);
+  margin: 0 32px; border-radius: 16px;
+}
+.final-cta h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -1.5px; margin-bottom: 16px;
+}
+.final-cta p { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 36px; }
+.final-cta .btn-primary { font-size: 17px; padding: 18px 44px; }
+
+footer { padding: 48px 0; text-align: center; font-size: 14px; color: var(--muted); }
+footer a { color: var(--muted); }
+
+@media (max-width: 768px) {
+  .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .problem { padding: 40px 24px; margin: 0 16px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .platform-grid { grid-template-columns: 1fr; }
+  .integrations-grid { grid-template-columns: repeat(2, 1fr); }
+  .integrations-section { margin: 0 16px; padding: 40px 24px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .final-cta { margin: 0 16px; padding: 64px 24px; }
+  .hero { padding: 60px 0 48px; }
+  .cred-layout { grid-template-columns: 1fr; text-align: center; }
+  .cred-photo { margin: 0 auto; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero-sub, .hero-actions { animation: fadeUp 0.6s ease-out both; }
+.hero-sub { animation-delay: 0.1s; }
+.hero-actions { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">Sterling <span>Calls</span></a>
+    <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="nav-cta">Book a Demo</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">AI Receptionist for Senior Living Communities</div>
+    <h1>A family called last night. <em>Nobody answered.</em></h1>
+    <p class="hero-sub">That daughter researching care for her mom at 10pm didn't leave a voicemail. She called the next community on Google. Your AI receptionist makes sure that never happens again. 24/7. In English and Spanish.</p>
+    <div class="hero-actions">
+      <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="btn-primary">Start a Free 2-Week Pilot</a>
+      <a href="#demo" class="btn-ghost">
+        <i data-lucide="play" style="width:18px;height:18px;"></i>
+        Hear a demo call
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="proof-bar">
+  <div class="container">
+    <div class="proof-grid">
+      <div>
+        <div class="proof-stat"><span>$</span>200k<span>+</span></div>
+        <div class="proof-label">average lifetime value per resident</div>
+      </div>
+      <div>
+        <div class="proof-stat">67<span>%</span></div>
+        <div class="proof-label">of family inquiries happen outside business hours</div>
+      </div>
+      <div>
+        <div class="proof-stat">0.6<span>s</span></div>
+        <div class="proof-label">average pickup time with Sterling Calls</div>
+      </div>
+      <div>
+        <div class="proof-stat">24<span>/7</span></div>
+        <div class="proof-label">coverage including nights, weekends, holidays</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section style="padding: 80px 0;">
+  <div class="problem">
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-title" style="color: white;">Families don't research senior living during business hours.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon"><i data-lucide="phone-off" style="width:24px;height:24px;"></i></div>
+        <h3>The 10pm call you never heard</h3>
+        <p>A daughter finally has time to research after the kids are asleep. She calls three communities. Yours goes to voicemail. The other two answer. She books tours with them.</p>
+        <div class="cost">$200k+ resident lost</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><i data-lucide="hourglass" style="width:24px;height:24px;"></i></div>
+        <h3>Weekend inquiries vanish</h3>
+        <p>Saturday and Sunday are peak research days. Families visit one community, then call three more from the parking lot. If your admissions team is off, you're invisible.</p>
+        <div class="cost">12-15 calls missed/week</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon"><i data-lucide="eye-off" style="width:24px;height:24px;"></i></div>
+        <h3>No visibility into what's working</h3>
+        <p>You're spending on A Place for Mom, Google, mailers, and referral networks. But you can't tell which source is actually producing move-ins and which is wasting budget.</p>
+        <div class="cost">Thousands in blind spend</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">From call to tour booked. Fully automated.</h2>
+    <p class="section-sub">Set up in 48 hours. No IT required. We handle everything.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i data-lucide="phone-incoming" style="width:22px;height:22px;"></i></div>
+        </div>
+        <h3>Instant pickup</h3>
+        <p>A family member calls at 9pm on a Tuesday. AI answers in under a second with your community's name, warmth, and personality. They have no idea it's not your admissions team.</p>
+        <div class="step-tag">0.6s response time</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i data-lucide="clipboard-check" style="width:22px;height:22px;"></i></div>
+        </div>
+        <h3>Qualifies the inquiry</h3>
+        <p>Asks the right questions with empathy. Who is the care for? What level of care? Timeline? Budget range? Insurance? Captures everything your admissions team needs.</p>
+        <div class="step-tag">Your intake flow, your criteria</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i data-lucide="calendar-check" style="width:22px;height:22px;"></i></div>
+        </div>
+        <h3>Books the tour</h3>
+        <p>Checks your real-time calendar and books a tour or consultation on the spot. Sends confirmation via SMS with directions and what to expect.</p>
+        <div class="step-tag">Direct calendar integration</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i data-lucide="bar-chart-3" style="width:22px;height:22px;"></i></div>
+        </div>
+        <h3>You get the full picture</h3>
+        <p>Complete transcript and inquiry details in your CRM by morning. Monthly report shows which marketing channels produce tours and which produce move-ins.</p>
+        <div class="step-tag">Inquiry-to-move-in attribution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="integrations-section">
+    <div class="section-eyebrow">Integrations</div>
+    <h2 class="section-title">Works with the tools your team already uses.</h2>
+    <p class="section-sub">No rip-and-replace. We connect to your existing systems and make them smarter.</p>
+    <div class="integrations-grid">
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Salesforce</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> HubSpot CRM</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Yardi</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Calendly</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Google Calendar</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Google Ads</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> A Place for Mom</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> CallRail</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Slack</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> SMS follow-ups</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Twilio</div>
+      <div class="integration-pill"><i data-lucide="check-circle-2" style="width:16px;height:16px;"></i> Zapier</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Why Communities Stay</div>
+    <h2 class="section-title">The longer you use it, the smarter it gets.</h2>
+    <p class="section-sub">Every month, your system learns more about your inquiries, your market, and your community.</p>
+    <div class="value-timeline">
+      <div class="value-node">
+        <div class="value-month">Month 1</div>
+        <h3>Stop losing families to voicemail</h3>
+        <p>AI answers every call. Tour bookings increase. After-hours and weekend inquiries that used to disappear are now on your calendar by morning.</p>
+        <div class="value-revenue">Zero missed inquiry calls</div>
+      </div>
+      <div class="value-node">
+        <div class="value-month">Month 3</div>
+        <h3>See where your residents come from</h3>
+        <p>First attribution report drops. You discover which referral sources and ad campaigns actually produce move-ins and which are burning budget. You reallocate. Occupancy climbs.</p>
+        <div class="value-revenue">Cut wasted marketing spend 30-50%</div>
+      </div>
+      <div class="value-node">
+        <div class="value-month">Month 6</div>
+        <h3>Know what families really want</h3>
+        <p>Hundreds of transcripts reveal the questions families actually ask, the objections that stall tours, and what competitors are offering. Your admissions pitch sharpens.</p>
+        <div class="value-revenue">+10-15% tour-to-move-in rate</div>
+      </div>
+      <div class="value-node">
+        <div class="value-month">Month 12</div>
+        <h3>Autopilot occupancy pipeline</h3>
+        <p>SMS recall campaigns re-engage families who called months ago but didn't tour. Review requests build your Google profile. Spanish-language intake reaches a whole new audience.</p>
+        <div class="value-revenue">2-3x ROI on marketing spend</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="platform-section">
+  <div class="container">
+    <div class="section-eyebrow">The Full Platform</div>
+    <h2 class="section-title">Not an answering service. An admissions support system.</h2>
+    <p class="section-sub">Everything your admissions team does after hours, weekends, and overflow — plus intelligence they can't provide.</p>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="phone" style="width:20px;height:20px;"></i></div>
+          <h3>24/7 AI receptionist</h3>
+        </div>
+        <p>Answers in 0.6 seconds. Warm and empathetic. Handles the emotional nuance of families researching care. Never calls in sick.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="calendar" style="width:20px;height:20px;"></i></div>
+          <h3>Direct tour booking</h3>
+        </div>
+        <p>Checks real-time availability, books tours, sends SMS confirmation with directions and what to bring. No callbacks needed.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="message-square" style="width:20px;height:20px;"></i></div>
+          <h3>SMS follow-up sequences</h3>
+        </div>
+        <p>Family didn't book on the call? Automatic text within 60 seconds with a link to schedule. Recovers 20-30% of hesitant inquiries.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="languages" style="width:20px;height:20px;"></i></div>
+          <h3>Bilingual support</h3>
+        </div>
+        <p>Full Spanish-language intake. No interpreter needed. Families are greeted in their preferred language automatically.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="trending-up" style="width:20px;height:20px;"></i></div>
+          <h3>Inquiry-to-move-in attribution</h3>
+        </div>
+        <p>Tracks which marketing channel, referral source, and campaign produced each move-in. Kill what doesn't work. Scale what does.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="star" style="width:20px;height:20px;"></i></div>
+          <h3>Review generation</h3>
+        </div>
+        <p>Automated text asks families for a Google review after move-in. Builds your online reputation on autopilot. More stars, more trust, more inquiries.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="rotate-ccw" style="width:20px;height:20px;"></i></div>
+          <h3>Family recall campaigns</h3>
+        </div>
+        <p>"You called us 4 months ago about care for your mom. Still looking?" Automated SMS re-engagement of past inquiries. Free pipeline.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-card-header">
+          <div class="platform-card-icon"><i data-lucide="shield-check" style="width:20px;height:20px;"></i></div>
+          <h3>Full compliance</h3>
+        </div>
+        <p>Every call recorded and transcribed. Searchable archive. Inquiry documentation ready for your records and reporting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="credibility-section">
+  <div class="container">
+    <div class="section-eyebrow">Who Built This</div>
+    <h2 class="section-title">This isn't my first time driving calls to local businesses.</h2>
+    <div class="cred-layout">
+      <img src="https://sterlingcalls.com/russell-profile.jpg" alt="Russell Miller" class="cred-photo">
+      <div class="cred-bio">
+        <p>I'm <strong>Russell Miller.</strong> I spent four years at <strong>RepairPal</strong> — the country's largest auto repair marketplace — leading product and marketing. During my time there, the company doubled in traffic, doubled in revenue, and was ultimately acquired by Yelp for $80 million.</p>
+        <p>Before that, I ran growth at <strong>YourMechanic</strong>, driving hundreds of qualified calls per month to local service providers before the company was acquired by Wrench.</p>
+        <p>Now I apply that same playbook to senior living communities. Same strategies that worked at scale — pointed at your phone, your calendar, your occupancy rate.</p>
+        <div class="cred-badges">
+          <span class="cred-badge">15+ Years in Local Services</span>
+          <span class="cred-badge">Operator-Led</span>
+          <span class="cred-badge">Not Outsourced</span>
+          <span class="cred-badge">Based in San Francisco</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Less than one month's referral fee to A Place for Mom.</h2>
+    <p class="section-sub">No setup fees. No annual contracts. Start with a free 2-week pilot.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Admissions Support</div>
+        <div class="price-amount">$2,000<span>/mo</span></div>
+        <div class="price-desc">Stop losing families to voicemail. Start booking tours.</div>
+        <ul class="price-features">
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> 24/7 AI receptionist</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Family inquiry qualification</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Direct tour booking</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> SMS follow-up sequences</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Bilingual (English + Spanish)</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Call recording + transcripts</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> CRM integration</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Slack/email notifications</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Weekly inquiry volume summary</li>
+        </ul>
+        <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="price-cta secondary">Start Free Pilot</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Admissions + Intelligence</div>
+        <div class="price-amount">$3,500<span>/mo</span></div>
+        <div class="price-desc">Know exactly which marketing dollars fill beds.</div>
+        <ul class="price-features">
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Everything in Admissions Support</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Monthly move-in attribution report</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Referral source performance tracking</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Campaign + keyword analysis</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Automated Google review requests</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Family recall SMS campaigns</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Quarterly strategy call (30 min)</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Competitive inquiry intelligence</li>
+          <li><i data-lucide="check" style="width:18px;height:18px;"></i> Priority support</li>
+        </ul>
+        <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="price-cta primary">Start Free Pilot</a>
+      </div>
+    </div>
+
+    <div class="comparison">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Full-Time Admissions Coord.</th>
+            <th>A Place for Mom</th>
+            <th class="highlight">Sterling Calls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly cost</td>
+            <td>$4,000 – 5,500</td>
+            <td>1-2 months rent per move-in</td>
+            <td class="highlight"><strong>$2,000 – 3,500</strong></td>
+          </tr>
+          <tr>
+            <td>After-hours coverage</td>
+            <td class="x">No</td>
+            <td class="x">No</td>
+            <td class="highlight check">Included</td>
+          </tr>
+          <tr>
+            <td>Weekend / holiday</td>
+            <td class="x">No</td>
+            <td class="x">No</td>
+            <td class="highlight check">Always on</td>
+          </tr>
+          <tr>
+            <td>Tour booking</td>
+            <td>Manual</td>
+            <td>They keep the lead</td>
+            <td class="highlight check">Real-time, yours</td>
+          </tr>
+          <tr>
+            <td>Bilingual intake</td>
+            <td>Rare</td>
+            <td class="x">No</td>
+            <td class="highlight check">English + Spanish</td>
+          </tr>
+          <tr>
+            <td>Move-in attribution</td>
+            <td class="x">No</td>
+            <td class="x">No</td>
+            <td class="highlight check">Source to move-in</td>
+          </tr>
+          <tr>
+            <td>Review generation</td>
+            <td class="x">No</td>
+            <td class="x">No</td>
+            <td class="highlight check">Automated</td>
+          </tr>
+          <tr>
+            <td>Family recall campaigns</td>
+            <td class="x">No</td>
+            <td class="x">No</td>
+            <td class="highlight check">Automated SMS</td>
+          </tr>
+          <tr>
+            <td>You own the leads</td>
+            <td>Yes</td>
+            <td class="x">No</td>
+            <td class="highlight"><strong>Yes, always</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="container">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title" style="margin-bottom: 40px;">Common questions.</h2>
+    <div class="faq-item">
+      <div class="faq-q">Will families know it's AI?</div>
+      <div class="faq-a">Most can't tell. The system responds in under a second with natural, empathetic conversation. It handles interruptions, emotional callers, and complex questions with care. If anyone asks to speak with a person, they're offered a callback from your admissions team within 2 hours.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can it handle sensitive conversations about placing a parent?</div>
+      <div class="faq-a">Yes. The AI is prompted to be warm, patient, and never rush a caller. It acknowledges the difficulty of the decision and guides the conversation with empathy. It's not trying to close — it's trying to help and book a tour so your admissions team can take over in person.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does setup take?</div>
+      <div class="faq-a">48 hours from kickoff to live calls. We handle everything: writing your intake script, connecting your calendar and CRM, and testing with realistic scenarios before going live.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What happens during the free pilot?</div>
+      <div class="faq-a">We answer your phones for 2 weeks at no cost. At the end, we show you exactly how many calls were answered, how many tours were booked, and what you would have missed. You decide if it's worth it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How is this different from A Place for Mom?</div>
+      <div class="faq-a">A Place for Mom charges 1-2 months of rent per referral and owns the relationship with the family. We answer YOUR phone, book tours on YOUR calendar, and you own every lead. No commission per move-in. Flat monthly rate.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if we already have admissions staff?</div>
+      <div class="faq-a">Perfect — we handle overflow and after-hours. When your team is in a meeting, giving a tour, at lunch, or gone for the day, we catch everything they miss. No inquiry falls through the cracks.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 80px 0;">
+  <div class="final-cta">
+    <h2>How many families called last weekend?</h2>
+    <p>Find out with a free 2-week pilot. No setup fees. No contracts. Live in 48 hours.</p>
+    <a href="https://calendar.app.google/7QYuYXn8DBXnQU5Z8" class="btn-primary">Book Your Free Pilot</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>2026 Sterling Calls — Built in San Francisco — <a href="/cdn-cgi/l/email-protection#91e3e4e2e2f4fdfdd1e2e5f4e3fdf8fff6f2f0fdfde2bff2fefc"><span class="__cf_email__" data-cfemail="3e4c4b4d4d5b52527e4d4a5b
