@@ -97,6 +97,16 @@ nav .container { display: flex; justify-content: space-between; align-items: cen
 
 /* PROOF BAR */
 .proof-bar { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.trust-badges {
+  display: flex; gap: 20px; margin-top: 32px; flex-wrap: wrap;
+}
+.trust-badge {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+  color: var(--muted);
+}
+.trust-badge svg { flex-shrink: 0; color: var(--green); }
 .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
 .proof-stat {
   font-family: 'Instrument Serif', serif;
@@ -371,6 +381,20 @@ footer a { color: var(--muted); }
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call (415) 942-8924 — try the AI live
       </a>
+    </div>
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        SOC 2 Compliant
+      </div>
+      <div class="trust-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        All Calls Encrypted
+      </div>
+      <div class="trust-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        HIPAA-Ready Infrastructure
+      </div>
     </div>
   </div>
 </section>
